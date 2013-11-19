@@ -1,0 +1,33 @@
+{
+  "name": "lies",
+  "version": "0.0.1",
+  "description": "A promise library that violates everything you know about promises.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/objectundefined/lies.git"
+  },
+  "keywords": [
+    "promise",
+    "lies",
+    "reset",
+    "reconnect",
+    "state"
+  ],
+  "dependencies": {
+    "when": "~2.6.0"
+  },
+  "author": "Gabriel Lipson",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "8316e6870d06067790eebcee355d620bac4d2196",
+  "bugs": {
+    "url": "https://github.com/objectundefined/lies/issues"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0"
+  }
+}
