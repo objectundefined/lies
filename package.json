@@ -1,6 +1,6 @@
 {
-  "name": "lies",
-  "version": "0.0.1",
+  "name": "recant",
+  "version": "0.2.0",
   "description": "A promise library that violates everything you know about promises.",
   "main": "index.js",
   "scripts": {
@@ -8,12 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/objectundefined/lies.git"
+    "url": "git://github.com/objectundefined/recant.git"
   },
   "keywords": [
     "promise",
     "lies",
     "reset",
+		"recant" ,
+		"deferred" ,
+		"state machine" ,
     "reconnect",
     "state"
   ],
@@ -25,7 +28,7 @@
   "readmeFilename": "README.md",
   "gitHead": "8316e6870d06067790eebcee355d620bac4d2196",
   "bugs": {
-    "url": "https://github.com/objectundefined/lies/issues"
+    "url": "https://github.com/objectundefined/recant/issues"
   },
   "devDependencies": {
     "mocha": "~1.14.0"

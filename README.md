@@ -1,4 +1,4 @@
-# Lies
+# Recant
 
 A promise library that violates everything you know about promises.
 
@@ -17,13 +17,13 @@ A promise library that violates everything you know about promises.
 
 Install via NPM
 
-    $ npm install lies
+    $ npm install recant
 
 ## Example- Promise
 
 ```javascript
-var lies = require('lies') ;
-var promise = lies.promise(function(resolve,reject,notify,reset){
+var recant = require('recant') ;
+var promise = recant.promise(function(resolve,reject,notify,reset){
 	
 	var connPromise = connection.open() ;
 	connPromise.then(function(conn){	
@@ -38,8 +38,8 @@ var promise = lies.promise(function(resolve,reject,notify,reset){
 ## Example- Deferred
 
 ```javascript
-var lies = require('lies') ;
-var deferred = lies.defer() ;
+var recant = require('recant') ;
+var deferred = recant.defer() ;
 var promise = deferred.promise ;
 
 deferred.resolve(val); // as of now, all promise.then calls will resolve with a value

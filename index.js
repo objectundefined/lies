@@ -13,13 +13,13 @@ var Promise = exports.promise = function ( resolver ) {
 		}
 	});
 	
-	function  reset () {
+	function  recant () {
 		prom = createPromise() ;
 	}
 	
 	function createPromise () {
 		return when.promise(function( resolve , reject , notify ){
-			resolver( resolve , reject , notify , reset );
+			resolver( resolve , reject , notify , recant );
 		})
 	}
 	
@@ -29,14 +29,14 @@ var Promise = exports.promise = function ( resolver ) {
 var Deferred = exports.defer = function(){
 	
 	var emitter = new EventEmitter() ;
-	var promise = Promise(function( resolve , reject , notify , reset ){
+	var promise = Promise(function( resolve , reject , notify , recant ){
 		emitter.removeAllListeners();
 		emitter.once('resolve',resolve) ;
 		emitter.once('reject',reject) ;
-		emitter.once('reset',reset) ;
+		emitter.once('recant',recant) ;
 	});
 	var proto = { 
-		reset : emitter.emit.bind(emitter,'reset') , 
+		recant : emitter.emit.bind(emitter,'recant') , 
 		resolve : emitter.emit.bind(emitter,'resolve') , 
 		reject :  emitter.emit.bind(emitter,'reject')
 	}
