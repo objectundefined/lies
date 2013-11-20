@@ -19,7 +19,7 @@ var Promise = exports.promise = function ( resolver ) {
 	
 	function createPromise () {
 		return when.promise(function( resolve , reject , notify ){
-			resolver( resolve , reject , notify , recant );
+			resolver( resolve , reject , notify , _once(recant) );
 		})
 	}
 	
@@ -50,3 +50,14 @@ var Deferred = exports.defer = function(){
 	
 	return fakeDeferred ;
 }
+
+function _once (func) {
+  var ran = false, memo;
+  return function() {
+    if (ran) return memo;
+    ran = true;
+    memo = func.apply(this, arguments);
+    func = null;
+    return memo;
+  };
+};
