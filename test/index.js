@@ -15,13 +15,13 @@ describe('deferred', function(){
     })
   })
   describe('#subsequentReject', function(){
-    it('should reject when calling deferred.promise.then after being recanted', function(done){
+    it('should reject when calling deferred.promise.then after being reset', function(done){
       var deferred = recant.defer() ;
 			var promise = deferred.promise ;
 			deferred.resolve('foo') ;
-			deferred.recant() ;
+			deferred.reset() ;
 			promise.then(function(){
-				done(new Error('promise was resolved after being recant'));
+				done(new Error('promise was resolved after being reset'));
 			}).then(null,function(err){
 				done();
 			})
@@ -33,7 +33,7 @@ describe('deferred', function(){
 describe('promise', function(){
   describe('#initialResolve', function(){
     it('should resolve when calling promise.then', function(done){
-			var promise = recant.promise(function(resolve,reject,notify,recant){
+			var promise = recant.promise(function(resolve,reject,notify,reset){
 				resolve(true);
 			});
 			promise.then(function(){
@@ -44,16 +44,16 @@ describe('promise', function(){
     })
   })
   describe('#subsequentReject', function(){
-    it('should reject when calling promise.then after being recanted', function(done){
+    it('should reject when calling promise.then after being reset', function(done){
 			var ct = 0 ;
-			var promise = recant.promise(function(resolve,reject,notify,recant){
+			var promise = recant.promise(function(resolve,reject,notify,reset){
 				if (++ct==1) resolve(true);
 				else reject('RejectionError');
-				setTimeout(recant,10) ;
+				setTimeout(reset,10) ;
 			});
 			setTimeout(function(){
 				promise.then(function(){
-					done(new Error('promise was resolved after being recant'));
+					done(new Error('promise was resolved after being reset'));
 				}).then(null,function(err){
 					done();
 				})				
@@ -68,7 +68,7 @@ describe('promise', function(){
 				var realPromise = when.promise(function(resolve,reject,notify){
 					resolve(1);
 				})
-				var fakePromise = recant.promise(function(resolve,reject,notify,recant){
+				var fakePromise = recant.promise(function(resolve,reject,notify,reset){
 					resolve(2);
 				});
 				realPromise.then(function(){
@@ -81,15 +81,15 @@ describe('promise', function(){
 				})
 	    })
 						
-	    it('should chain a recanted promise when returned from a when.js promise resolver', function(done){
+	    it('should chain a reset promise when returned from a when.js promise resolver', function(done){
 				var ct = 0;
 				var realPromise = when.promise(function(resolve,reject,notify){
 					resolve(1);
 				})
-				var fakePromise = recant.promise(function(resolve,reject,notify,recant){
+				var fakePromise = recant.promise(function(resolve,reject,notify,reset){
 					if (++ct==1) resolve(true);
 					else reject('RejectionError');
-					setTimeout(recant,10) ;
+					setTimeout(reset,10) ;
 				});
 				realPromise.then(function(){
 					return fakePromise ;
